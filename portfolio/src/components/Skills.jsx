@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const CATEGORIES = [
   {
-    name: 'Cloud',
+    name: 'クラウド',
     skills: [
       { name: 'AWS',        level: 5, tags: ['EC2', 'EKS', 'RDS', 'S3', 'VPC'] },
       { name: 'GCP',        level: 3, tags: ['GKE', 'Cloud SQL', 'GCS'] },
@@ -12,39 +12,39 @@ const CATEGORIES = [
     ],
   },
   {
-    name: 'Containers',
+    name: 'コンテナ',
     skills: [
       { name: 'Kubernetes', level: 5, tags: ['Helm', 'RBAC', 'Ingress', 'CRDs'] },
       { name: 'Docker',     level: 5, tags: ['Compose', 'BuildKit', 'Registry'] },
-      { name: 'Helm',       level: 4, tags: ['Charts', 'Releases', 'Hooks'] },
-      { name: 'ArgoCD',     level: 4, tags: ['GitOps', 'Sync', 'Rollouts'] },
+      { name: 'Helm',       level: 4, tags: ['チャート', 'リリース', 'フック'] },
+      { name: 'ArgoCD',     level: 4, tags: ['GitOps', '同期', 'ロールアウト'] },
     ],
   },
   {
-    name: 'IaC & CI/CD',
+    name: 'IaC・CI/CD',
     skills: [
-      { name: 'Terraform',       level: 5, tags: ['Modules', 'State', 'Workspaces'] },
-      { name: 'Ansible',         level: 4, tags: ['Playbooks', 'Roles', 'Vault'] },
-      { name: 'GitHub Actions',  level: 4, tags: ['Workflows', 'Runners', 'Secrets'] },
-      { name: 'Jenkins',         level: 3, tags: ['Pipelines', 'Groovy', 'Agents'] },
+      { name: 'Terraform',       level: 5, tags: ['モジュール', 'ステート', 'ワークスペース'] },
+      { name: 'Ansible',         level: 4, tags: ['プレイブック', 'ロール', 'Vault'] },
+      { name: 'GitHub Actions',  level: 4, tags: ['ワークフロー', 'ランナー', 'シークレット'] },
+      { name: 'Jenkins',         level: 3, tags: ['パイプライン', 'Groovy', 'エージェント'] },
     ],
   },
   {
-    name: 'Monitoring',
+    name: '監視',
     skills: [
-      { name: 'Prometheus', level: 4, tags: ['PromQL', 'AlertManager', 'Exporters'] },
-      { name: 'Grafana',    level: 4, tags: ['Dashboards', 'Alerting', 'Loki'] },
-      { name: 'Datadog',    level: 3, tags: ['APM', 'Logs', 'Metrics'] },
+      { name: 'Prometheus', level: 4, tags: ['PromQL', 'AlertManager', 'エクスポーター'] },
+      { name: 'Grafana',    level: 4, tags: ['ダッシュボード', 'アラート', 'Loki'] },
+      { name: 'Datadog',    level: 3, tags: ['APM', 'ログ', 'メトリクス'] },
       { name: 'ELK Stack',  level: 3, tags: ['Elasticsearch', 'Logstash', 'Kibana'] },
     ],
   },
   {
-    name: 'Linux & Network',
+    name: 'Linux・ネットワーク',
     skills: [
-      { name: 'Linux',      level: 5, tags: ['Ubuntu', 'CentOS', 'Shell'] },
-      { name: 'Python',     level: 4, tags: ['boto3', 'Automation', 'FastAPI'] },
-      { name: 'Networking', level: 4, tags: ['VPN', 'BGP', 'Nginx', 'HAProxy'] },
-      { name: 'Security',   level: 3, tags: ['IAM', 'WAF', 'TLS', 'SIEM'] },
+      { name: 'Linux',      level: 5, tags: ['Ubuntu', 'CentOS', 'シェル'] },
+      { name: 'Python',     level: 4, tags: ['boto3', '自動化', 'FastAPI'] },
+      { name: 'ネットワーク', level: 4, tags: ['VPN', 'BGP', 'Nginx', 'HAProxy'] },
+      { name: 'セキュリティ', level: 3, tags: ['IAM', 'WAF', 'TLS', 'SIEM'] },
     ],
   },
 ]
@@ -87,9 +87,9 @@ export default function Skills() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="section-label">Technical Skills</span>
-          <h2 className="section-title">Tech Stack</h2>
-          <span className="section-title-jp">技術スタック</span>
+          <span className="section-label">技術スキル</span>
+          <h2 className="section-title">技術スタック</h2>
+          <span className="section-title-jp">Tech Stack</span>
         </motion.div>
 
         <div className="skills-tabs">

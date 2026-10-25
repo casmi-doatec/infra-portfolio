@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion'
 
-/* TODO: Replace all "#" links and "your@email.com" with real values */
 const LINKS = [
-  { label: 'GitHub',   href: '#', icon: '⌥' },
-  { label: 'LinkedIn', href: '#', icon: '⊞' },
+  { label: 'GitHub',    href: '#', icon: '⌥' },
+  { label: 'LinkedIn',  href: '#', icon: '⊞' },
   { label: 'Twitter/X', href: '#', icon: '✕' },
 ]
 
@@ -18,20 +17,18 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="section-label">Contact</span>
+          <span className="section-label">お問い合わせ</span>
 
           <h2 className="contact-heading">
-            Let's build something<br /><span>together.</span>
+            一緒に、何かを<br /><span>つくりませんか。</span>
           </h2>
           <p className="contact-sub">
-            Open to full-time roles, contract work, and interesting
-            infrastructure challenges. Reach out anytime —
-            I reply within 24 hours.
+            正社員・業務委託・副業など、インフラに関するご相談はお気軽にどうぞ。
+            24時間以内に返信いたします。
           </p>
 
-          {/* TODO: Replace with your actual email */}
           <a href="mailto:your@email.com" className="contact-email-btn">
-            Send Email →
+            メールを送る →
           </a>
 
           <div className="contact-divider" />

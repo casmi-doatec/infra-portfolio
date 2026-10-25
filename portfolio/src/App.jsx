@@ -5,14 +5,14 @@ import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import CustomCursor from './components/CustomCursor'
 import ForestBackground from './components/ForestBackground'
+import FallingLeaves from './components/FallingLeaves'
 
 function App() {
   return (
     <>
       <ForestBackground />
-      <CustomCursor />
+      <FallingLeaves count={40} />
       <Navigation />
       <main>
         <Hero />
@@ -24,9 +24,9 @@ function App() {
       </main>
       <footer className="footer">
         <div className="footer-inner">
-          <span className="footer-jp">インフラエンジニア</span>
+          <span className="footer-jp">武田 泰治</span>
           <span className="footer-sep">·</span>
-          <span>Infrastructure Engineer</span>
+          <span>インフラエンジニア</span>
           <span className="footer-sep">·</span>
           <span>© 2024</span>
         </div>

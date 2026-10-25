@@ -1,45 +1,44 @@
 import { motion } from 'framer-motion'
 
-/* TODO: Replace with your actual projects */
 const PROJECTS = [
   {
-    title:    'Multi-Region AWS Infrastructure',
-    desc:     'Designed a highly available, multi-region AWS architecture using Terraform. Includes VPC peering, Route 53 failover, RDS Multi-AZ, and EKS node groups across ap-northeast-1 and ap-southeast-1. Full GitOps deployment pipeline.',
+    title:    'マルチリージョンAWSインフラ',
+    desc:     'Terraformを使用して高可用性のマルチリージョンAWSアーキテクチャを設計。VPCピアリング、Route 53フェイルオーバー、RDS Multi-AZ、ap-northeast-1とap-southeast-1にまたがるEKSノードグループを含む完全なGitOpsデプロイパイプライン。',
     techs:    ['Terraform', 'AWS', 'EKS', 'RDS', 'Route 53'],
-    github:   '#',   /* TODO: add your GitHub URL */
+    github:   '#',
     featured: true,
   },
   {
-    title:    'GitOps Platform with ArgoCD',
-    desc:     'Implemented a complete GitOps platform using ArgoCD on Kubernetes. Application manifests in Git, automated sync, health checks, and rollback for 30+ microservices.',
+    title:    'ArgoCDによるGitOpsプラットフォーム',
+    desc:     'Kubernetes上でArgoCDを使った完全なGitOpsプラットフォームを構築。Gitでアプリケーションマニフェストを管理し、30以上のマイクロサービスへの自動同期・ヘルスチェック・ロールバックを実現。',
     techs:    ['Kubernetes', 'ArgoCD', 'Helm', 'GitHub Actions'],
     github:   '#',
     featured: false,
   },
   {
-    title:    'Observability Stack',
-    desc:     'Built a comprehensive observability platform: Prometheus, Grafana, Loki, and Tempo. Custom dashboards for infra metrics, application logs, and distributed traces.',
+    title:    'オブザーバビリティスタック',
+    desc:     'Prometheus、Grafana、Loki、Tempoを組み合わせた包括的な可観測性プラットフォームを構築。インフラメトリクス、アプリログ、分散トレースのカスタムダッシュボードを整備。',
     techs:    ['Prometheus', 'Grafana', 'Loki', 'Tempo'],
     github:   '#',
     featured: false,
   },
   {
-    title:    'Kubernetes Cost Optimizer',
-    desc:     'Python tool that analyses K8s resource usage and generates Terraform recommendations for right-sizing, achieving 30% infrastructure cost reduction.',
+    title:    'Kubernetesコスト最適化ツール',
+    desc:     'K8sリソース使用状況を分析し、適切なサイジングのTerraform推奨事項を生成するPythonツール。インフラコストを30%削減。',
     techs:    ['Python', 'Kubernetes', 'boto3', 'Terraform'],
     github:   '#',
     featured: false,
   },
   {
-    title:    'Zero-Downtime DB Migration',
-    desc:     'Orchestrated zero-downtime migration of PostgreSQL from on-premise to AWS RDS using DMS, with dual-write strategy and automated cutover scripts.',
+    title:    'ゼロダウンタイムDBマイグレーション',
+    desc:     'AWS DMSを使ったオンプレミスからAWS RDSへのPostgreSQLゼロダウンタイム移行を指揮。デュアルライト戦略と自動カットオーバースクリプトで無停止移行を実現。',
     techs:    ['AWS DMS', 'PostgreSQL', 'Python', 'Ansible'],
     github:   '#',
     featured: false,
   },
   {
-    title:    'Network Security Automation',
-    desc:     'Automated AWS security group management with Python and boto3. Integrated JIRA workflow approval and full audit trail for compliance.',
+    title:    'ネットワークセキュリティ自動化',
+    desc:     'PythonとBoto3によるAWSセキュリティグループ管理の自動化。JIRAワークフロー承認と完全な監査証跡によりコンプライアンスを強化。',
     techs:    ['Python', 'boto3', 'AWS', 'Lambda', 'JIRA'],
     github:   '#',
     featured: false,
@@ -85,9 +84,9 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="section-label">Work</span>
-          <h2 className="section-title">Projects</h2>
-          <span className="section-title-jp">プロジェクト</span>
+          <span className="section-label">実績</span>
+          <h2 className="section-title">プロジェクト</h2>
+          <span className="section-title-jp">Projects</span>
         </motion.div>
 
         <div className="projects-grid">

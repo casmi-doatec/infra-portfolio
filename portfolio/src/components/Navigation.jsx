@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
 const LINKS = [
-  { label: 'About',      href: '#about'      },
-  { label: 'Skills',     href: '#skills'     },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects',   href: '#projects'   },
+  { label: '自己紹介', href: '#about'      },
+  { label: 'スキル',   href: '#skills'     },
+  { label: '経歴',     href: '#experience' },
+  { label: '実績',     href: '#projects'   },
 ]
 
 export default function Navigation() {
@@ -31,7 +31,7 @@ export default function Navigation() {
             </li>
           ))}
           <li>
-            <a href="#contact" className="nav-cta">Contact</a>
+            <a href="#contact" className="nav-cta">お問い合わせ</a>
           </li>
         </ul>
       </div>

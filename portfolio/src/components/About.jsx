@@ -7,10 +7,9 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
 })
 
-// "基盤" = foundation/infrastructure  "構造" = structure
 const TAGS = [
-  'Cloud Architecture', 'Site Reliability', 'DevOps', 'Automation',
-  'Security Hardening', 'Cost Optimisation', 'High Availability',
+  'クラウド設計', 'サイト信頼性', 'DevOps', '自動化',
+  'セキュリティ強化', 'コスト最適化', '高可用性',
 ]
 
 export default function About() {
@@ -19,61 +18,45 @@ export default function About() {
       <div className="container">
         <div className="about-grid">
 
-          {/* ── Visual card ── */}
           <motion.div className="about-visual" {...fadeUp(0)}>
             <div className="about-card">
-
-              {/* Large architectural kanji as visual */}
               <div className="about-kanji-block">
                 <span className="about-kanji-main">基</span>
                 <span className="about-kanji-sub">盤</span>
               </div>
-
-              {/* Blueprint annotation line */}
               <div className="about-annotation">
                 <span className="about-annotation-line" />
-                <span className="about-annotation-text">Infrastructure = Foundation</span>
+                <span className="about-annotation-text">インフラ＝基盤</span>
               </div>
-
               <div className="about-stats">
                 <div>
-                  {/* TODO: Update with your actual years */}
                   <span className="about-stat-num">6<span>+</span></span>
-                  <span className="about-stat-label">Years Exp.</span>
+                  <span className="about-stat-label">年の経験</span>
                 </div>
                 <div>
-                  {/* TODO: Update with your actual project count */}
                   <span className="about-stat-num">40<span>+</span></span>
-                  <span className="about-stat-label">Projects</span>
+                  <span className="about-stat-label">プロジェクト</span>
                 </div>
                 <div>
-                  {/* TODO: Update with your cert count */}
                   <span className="about-stat-num">5</span>
-                  <span className="about-stat-label">Certs</span>
+                  <span className="about-stat-label">資格</span>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* ── Text ── */}
           <motion.div className="about-text" {...fadeUp(0.15)}>
-            <span className="section-label">About Me</span>
-            <h2 className="section-title">Infrastructure is the Foundation</h2>
-            <span className="section-title-jp">インフラは、すべての基盤</span>
+            <span className="section-label">自己紹介</span>
+            <h2 className="section-title">インフラは、すべての基盤</h2>
+            <span className="section-title-jp">Infrastructure is the Foundation</span>
 
-            {/* TODO: Replace with your actual bio */}
             <p>
-              Just as a skyscraper depends on its unseen foundation, every
-              modern system runs on the infrastructure beneath it. I'm an
-              infrastructure engineer based in Tokyo, Japan — I design and
-              operate the foundation so that everything above it can scale
-              without limits.
+              超高層ビルが見えない基礎の上に立つように、すべての現代システムはその下に広がるインフラの上で動いています。
+              東京を拠点に活動するインフラエンジニアとして、あらゆるものがスケールできる基盤を設計・運用しています。
             </p>
             <p>
-              With 6+ years in cloud-native environments, my focus is building
-              highly available AWS architectures, Kubernetes platforms, and
-              full automation pipelines that make infrastructure invisible
-              by making it bulletproof.
+              クラウドネイティブ環境での6年以上の経験を持ち、可用性の高いAWSアーキテクチャ、Kubernetesプラットフォーム、
+              そして完全自動化パイプラインの構築を通じて、インフラを「見えない存在」にすることを目指しています。
             </p>
 
             <div className="about-tags">

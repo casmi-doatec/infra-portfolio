@@ -1,30 +1,29 @@
 import { motion } from 'framer-motion'
 
-/* TODO: Replace with your actual work history */
 const EXPERIENCE = [
   {
-    role:    'Senior Infrastructure Engineer',
-    company: 'Company Name',
-    period:  '2022.04 — Present',
-    location: 'Tokyo, Japan',
-    desc:    'Led migration of monolithic applications to microservices on EKS. Designed and implemented multi-region AWS infrastructure using Terraform. Reduced deployment frequency from weekly to multiple times per day via GitOps pipelines with ArgoCD.',
-    techs:   ['AWS', 'Kubernetes', 'Terraform', 'ArgoCD', 'Prometheus'],
+    role:     'シニアインフラエンジニア',
+    company:  '株式会社〇〇',
+    period:   '2022年4月 — 現在',
+    location: '東京都',
+    desc:     'モノリシックアプリケーションをEKS上のマイクロサービスへ移行するプロジェクトをリード。Terraformを使ったマルチリージョンAWSインフラを設計・構築し、ArgoCDによるGitOpsパイプラインにより、デプロイ頻度を週1回から1日複数回へ改善。',
+    techs:    ['AWS', 'Kubernetes', 'Terraform', 'ArgoCD', 'Prometheus'],
   },
   {
-    role:    'Infrastructure Engineer',
-    company: 'Company Name',
-    period:  '2020.04 — 2022.03',
-    location: 'Tokyo, Japan',
-    desc:    'Built and maintained CI/CD pipelines for 20+ microservices. Automated infrastructure provisioning with Ansible and Terraform. Implemented centralized monitoring and alerting with Prometheus and Grafana, reducing MTTR by 40%.',
-    techs:   ['AWS', 'Docker', 'Ansible', 'GitHub Actions', 'Grafana'],
+    role:     'インフラエンジニア',
+    company:  '株式会社〇〇',
+    period:   '2020年4月 — 2022年3月',
+    location: '東京都',
+    desc:     '20以上のマイクロサービス向けCI/CDパイプラインを構築・保守。AnsibleとTerraformによるインフラプロビジョニングを自動化。PrometheusとGrafanaによる集中監視・アラートを整備し、平均復旧時間（MTTR）を40%削減。',
+    techs:    ['AWS', 'Docker', 'Ansible', 'GitHub Actions', 'Grafana'],
   },
   {
-    role:    'Systems Engineer',
-    company: 'Company Name',
-    period:  '2018.04 — 2020.03',
-    location: 'Tokyo, Japan',
-    desc:    'Managed on-premise Linux server infrastructure for 500+ users. Designed and deployed network architecture for branch offices. Automated system administration tasks with shell scripts and Python, saving 20+ hours per month.',
-    techs:   ['Linux', 'Python', 'VMware', 'Networking', 'Shell'],
+    role:     'システムエンジニア',
+    company:  '株式会社〇〇',
+    period:   '2018年4月 — 2020年3月',
+    location: '東京都',
+    desc:     '500名以上のユーザーを対象にオンプレミスLinuxサーバーインフラを管理。支社向けネットワークアーキテクチャを設計・展開。シェルスクリプトとPythonによるシステム管理の自動化で、月20時間以上の工数を削減。',
+    techs:    ['Linux', 'Python', 'VMware', 'ネットワーク', 'Shell'],
   },
 ]
 
@@ -38,9 +37,9 @@ export default function Experience() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="section-label">Career</span>
-          <h2 className="section-title">Experience</h2>
-          <span className="section-title-jp">職務経歴</span>
+          <span className="section-label">キャリア</span>
+          <h2 className="section-title">職務経歴</h2>
+          <span className="section-title-jp">Experience</span>
         </motion.div>
 
         <div className="timeline">
