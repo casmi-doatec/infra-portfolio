@@ -28,7 +28,6 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 className="hero-name" {...fadeUp(0.25)}>
-            Taiji Takeda
             <span className="hero-name-jp">武田 泰治</span>
           </motion.h1>
 

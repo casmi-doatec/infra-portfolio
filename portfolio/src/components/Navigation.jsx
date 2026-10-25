@@ -21,7 +21,7 @@ export default function Navigation() {
       <div className="nav-inner">
         <a href="#hero" className="nav-logo">
           <div className="nav-logo-mark">武</div>
-          <span className="nav-logo-text">Taiji Takeda</span>
+          <span className="nav-logo-text">武田 泰治</span>
         </a>
 
         <ul className="nav-links">
