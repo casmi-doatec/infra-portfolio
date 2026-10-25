@@ -367,14 +367,7 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(13, 27, 42, 0.52) 0%,
-      rgba(13, 27, 42, 0.38) 40%,
-      rgba(13, 27, 42, 0.68) 100%
-    ),
-    url('/hero.png') center center / cover no-repeat;
+  background: url('/hero.png') center center / cover no-repeat;
 }
 
 

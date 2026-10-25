@@ -2,111 +2,121 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 /*
- * White-outline SVG hamster drawn from scratch.
- * fill="none", stroke="white" throughout — purely contour-style.
- * viewBox 80×70, anchor at nose-tip ≈ (8, 38).
+ * White-outline hamster matching the reference illustration:
+ * - Big round head that flows into a fat round body (one continuous silhouette)
+ * - Small round ears with inner circle
+ * - Tuft of hair on top
+ * - Large dot eyes, small oval nose, short whiskers
+ * - Tiny round paw nubs at the bottom
+ * All stroke="white", fill="none" — pure white contour on transparent.
+ * viewBox 0 0 90 100
  */
 function HamsterSVG({ running, sleeping }) {
   return (
     <svg
-      width="80"
-      height="70"
-      viewBox="0 0 80 70"
+      width="90"
+      height="100"
+      viewBox="0 0 90 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ overflow: 'visible', display: 'block' }}
     >
-      {/* ── stroke style shared ── */}
       <g stroke="white" strokeLinecap="round" strokeLinejoin="round">
 
-        {/* BODY — plump oval */}
-        <ellipse cx="44" cy="38" rx="26" ry="20" strokeWidth="2"/>
+        {/* ── OUTER SILHOUETTE ──
+            One big closed path: wide round body + head merged together.
+            Think of it as a vertical oval with a slightly narrower top (head)
+            and wide middle (body/cheeks), tapering to small paw bumps at bottom.
+        */}
+        <path
+          d={`
+            M 45 8
+            C 55 5, 68 10, 72 20
+            C 76 28, 76 36, 78 44
+            C 80 52, 80 62, 74 70
+            C 70 76, 62 80, 55 82
+            C 52 83, 50 84, 50 84
+            L 50 88
+            C 50 91, 47 93, 45 93
+            C 43 93, 40 91, 40 88
+            L 40 84
+            C 40 84, 38 83, 35 82
+            C 28 80, 20 76, 16 70
+            C 10 62, 10 52, 12 44
+            C 14 36, 14 28, 18 20
+            C 22 10, 35 5, 45 8
+            Z
+          `}
+          strokeWidth="3.5"
+        />
 
-        {/* CHEEK POUCHES — two bulgy circles on the sides */}
-        <circle cx="22" cy="40" r="10" strokeWidth="1.8"/>
-        <circle cx="66" cy="40" r="10" strokeWidth="1.8"/>
+        {/* ── EAR LEFT ── */}
+        <ellipse cx="22" cy="17" rx="9" ry="10" strokeWidth="3"/>
+        <ellipse cx="22" cy="17" rx="5"  ry="5.5" strokeWidth="1.8" opacity="0.7"/>
 
-        {/* HEAD — smaller circle on top-left of body */}
-        <circle cx="24" cy="26" r="14" strokeWidth="2"/>
+        {/* ── EAR RIGHT ── */}
+        <ellipse cx="68" cy="17" rx="9" ry="10" strokeWidth="3"/>
+        <ellipse cx="68" cy="17" rx="5"  ry="5.5" strokeWidth="1.8" opacity="0.7"/>
 
-        {/* EAR LEFT */}
-        <ellipse cx="16" cy="14" rx="6" ry="7" strokeWidth="1.8"/>
-        <ellipse cx="16" cy="14" rx="3" ry="4" strokeWidth="1" opacity="0.55"/>
+        {/* ── HAIR TUFT (3 strands on top-center) ── */}
+        <path d="M 41 10 Q 38 3 36 0"  strokeWidth="2.2"/>
+        <path d="M 45 8  Q 44 1 44 -2" strokeWidth="2.2"/>
+        <path d="M 49 10 Q 52 3 54 0"  strokeWidth="2.2"/>
 
-        {/* EAR RIGHT */}
-        <ellipse cx="32" cy="12" rx="6" ry="7" strokeWidth="1.8"/>
-        <ellipse cx="32" cy="12" rx="3" ry="4" strokeWidth="1" opacity="0.55"/>
-
-        {/* EYES */}
+        {/* ── EYES ── */}
         {sleeping ? (
-          /* Sleeping — closed curved lines */
           <>
-            <path d="M18 26 Q21 23 24 26" strokeWidth="2"/>
-            <path d="M26 25 Q29 22 32 25" strokeWidth="2"/>
+            <path d="M 32 42 Q 36 38 40 42" strokeWidth="2.5"/>
+            <path d="M 50 42 Q 54 38 58 42" strokeWidth="2.5"/>
           </>
         ) : (
-          /* Awake — small circles */
           <>
-            <circle cx="21" cy="26" r="2.5" strokeWidth="1.8" fill="white"/>
-            <circle cx="30" cy="25" r="2.5" strokeWidth="1.8" fill="white"/>
-            {/* Shine dots */}
-            <circle cx="22" cy="24.8" r="1" fill="white" stroke="none"/>
-            <circle cx="31" cy="23.8" r="1" fill="white" stroke="none"/>
+            <circle cx="36" cy="42" r="5" strokeWidth="2.5" fill="white"/>
+            <circle cx="54" cy="42" r="5" strokeWidth="2.5" fill="white"/>
+            {/* pupils */}
+            <circle cx="37" cy="41" r="2.2" fill="white" stroke="none"/>
+            <circle cx="55" cy="41" r="2.2" fill="white" stroke="none"/>
           </>
         )}
 
-        {/* NOSE */}
-        <ellipse cx="25.5" cy="33" rx="2.5" ry="1.8" strokeWidth="1.5"/>
+        {/* ── NOSE ── */}
+        <ellipse cx="45" cy="54" rx="3.5" ry="2.5" strokeWidth="2" fill="white"/>
 
-        {/* MOUTH */}
-        <path d="M23.5 35 Q25.5 37.5 27.5 35" strokeWidth="1.5"/>
+        {/* ── MOUTH ── */}
+        <path d="M 42 57 Q 45 61 48 57" strokeWidth="1.8"/>
 
-        {/* WHISKERS — left */}
-        <line x1="8"  y1="31" x2="21" y2="33" strokeWidth="1"  opacity="0.7"/>
-        <line x1="7"  y1="34" x2="21" y2="34" strokeWidth="1"  opacity="0.7"/>
-        <line x1="9"  y1="37" x2="21" y2="35" strokeWidth="1"  opacity="0.7"/>
-        {/* WHISKERS — right */}
-        <line x1="30" y1="33" x2="43" y2="31" strokeWidth="1"  opacity="0.7"/>
-        <line x1="30" y1="34" x2="44" y2="34" strokeWidth="1"  opacity="0.7"/>
-        <line x1="30" y1="35" x2="43" y2="37" strokeWidth="1"  opacity="0.7"/>
+        {/* ── WHISKERS left ── */}
+        <line x1="18" y1="50" x2="40" y2="54" strokeWidth="1.4" opacity="0.75"/>
+        <line x1="16" y1="55" x2="40" y2="56" strokeWidth="1.4" opacity="0.75"/>
+        <line x1="18" y1="60" x2="40" y2="58" strokeWidth="1.4" opacity="0.75"/>
 
-        {/* TAIL — small curly nub at back */}
-        <path d="M68 36 Q76 30 74 38 Q72 44 68 42" strokeWidth="1.8"/>
+        {/* ── WHISKERS right ── */}
+        <line x1="50" y1="54" x2="72" y2="50" strokeWidth="1.4" opacity="0.75"/>
+        <line x1="50" y1="56" x2="74" y2="55" strokeWidth="1.4" opacity="0.75"/>
+        <line x1="50" y1="58" x2="72" y2="60" strokeWidth="1.4" opacity="0.75"/>
 
+        {/* ── PAWS at bottom ── */}
         {sleeping ? (
-          /* SLEEPING — legs tucked under, rounded shape */
+          /* curled paws */
           <>
-            <path d="M32 55 Q44 60 58 55" strokeWidth="1.8"/>
-            <path d="M30 52 Q32 57 38 58" strokeWidth="1.8"/>
-            <path d="M54 58 Q60 57 62 52" strokeWidth="1.8"/>
+            <path d="M 35 82 Q 30 88 32 93 Q 34 96 38 95" strokeWidth="2.2"/>
+            <path d="M 55 82 Q 60 88 58 93 Q 56 96 52 95" strokeWidth="2.2"/>
           </>
         ) : running ? (
-          /* RUNNING — 4 legs pumping */
+          /* paws kicked out */
           <>
-            {/* front-left */}
-            <path d="M30 52 Q24 58 20 64" strokeWidth="2"/>
-            <path d="M20 64 Q18 67 14 66" strokeWidth="2"/>
-            {/* front-right */}
-            <path d="M38 54 Q36 62 34 68" strokeWidth="2"/>
-            <path d="M34 68 Q33 70 29 70" strokeWidth="2"/>
-            {/* back-left */}
-            <path d="M52 54 Q56 60 60 65" strokeWidth="2"/>
-            <path d="M60 65 Q62 68 58 70" strokeWidth="2"/>
-            {/* back-right */}
-            <path d="M60 52 Q66 56 70 60" strokeWidth="2"/>
-            <path d="M70 60 Q73 62 72 66" strokeWidth="2"/>
+            <path d="M 36 82 Q 26 88 20 94" strokeWidth="2.5"/>
+            <path d="M 20 94 Q 17 97 14 96"  strokeWidth="2.5"/>
+            <path d="M 54 82 Q 64 88 70 94" strokeWidth="2.5"/>
+            <path d="M 70 94 Q 73 97 76 96"  strokeWidth="2.5"/>
           </>
         ) : (
-          /* IDLE — legs resting */
+          /* resting paws — small rounded nubs */
           <>
-            <path d="M30 54 Q26 60 22 64" strokeWidth="2"/>
-            <path d="M22 64 Q20 67 16 66" strokeWidth="2"/>
-            <path d="M40 56 Q38 62 36 67" strokeWidth="2"/>
-            <path d="M36 67 Q35 70 31 69" strokeWidth="2"/>
-            <path d="M54 54 Q56 60 58 65" strokeWidth="2"/>
-            <path d="M58 65 Q60 68 56 70" strokeWidth="2"/>
-            <path d="M62 52 Q66 56 68 60" strokeWidth="2"/>
-            <path d="M68 60 Q70 62 69 66" strokeWidth="2"/>
+            <path d="M 36 82 Q 32 88 34 93" strokeWidth="2.5"/>
+            <path d="M 34 93 Q 36 96 40 95"  strokeWidth="2.2"/>
+            <path d="M 54 82 Q 58 88 56 93" strokeWidth="2.5"/>
+            <path d="M 56 93 Q 54 96 50 95"  strokeWidth="2.2"/>
           </>
         )}
       </g>
@@ -189,7 +199,7 @@ export default function CustomCursor() {
       <div
         className={`hamster-cursor hamster-${state}`}
         style={{
-          transform:  `translateX(${direction * 20}px) translateY(-8px) scaleX(${direction})`,
+          transform:  `translateX(${direction * 16}px) translateY(-12px) scaleX(${direction})`,
           transition: 'transform 0.08s ease',
           '--run-spd': `${runSpeed}s`,
         }}
