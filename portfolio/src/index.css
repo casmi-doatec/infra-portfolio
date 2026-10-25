@@ -11,7 +11,6 @@
   --accent-glow: rgba(192, 57, 43, 0.35);
   --gold:        #D4A017;
   --gold-dim:    rgba(212, 160, 23, 0.18);
-  --blue:        #8BBFD4;
   --white:       #F5ECD7;
   --text:        rgba(245, 236, 215, 0.92);
   --text-2:      rgba(245, 236, 215, 0.58);
@@ -45,25 +44,6 @@ html {
 
 ::selection { background: var(--accent-dim); color: var(--white); }
 
-/* ── Forest background fixed layer ── */
-.forest-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Cloud drift animations */
-.cloud-1 { animation: cloud-drift 70s linear infinite; }
-.cloud-2 { animation: cloud-drift 90s linear infinite 12s; }
-.cloud-3 { animation: cloud-drift 80s linear infinite 30s; }
-@keyframes cloud-drift {
-  from { transform: translateX(0);      }
-  to   { transform: translateX(-180px); }
-}
 
 body {
   font-family: var(--font-sans);
@@ -195,12 +175,12 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid transparent;
 }
 .nav {
-  background: rgba(13, 27, 42, 0.40);
+  background: rgba(26, 10, 4, 0.40);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .nav.scrolled {
-  background: rgba(13, 27, 42, 0.88);
+  background: rgba(26, 10, 4, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-color: var(--border);
@@ -353,7 +333,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-jp);
   font-size: 64px;
   font-weight: 300;
-  color: var(--blue);
+  color: var(--gold);
   line-height: 1;
   letter-spacing: 0.02em;
   opacity: 0.15;
@@ -585,7 +565,7 @@ a { color: inherit; text-decoration: none; }
 }
 .timeline-company {
   font-size: 14px;
-  color: var(--blue);
+  color: var(--gold);
   font-weight: 500;
   margin-bottom: 14px;
   font-family: var(--font-mono);
@@ -782,8 +762,8 @@ a { color: inherit; text-decoration: none; }
   transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 .contact-link:hover {
-  border-color: var(--blue);
-  color: var(--blue);
+  border-color: var(--gold);
+  color: var(--gold);
   transform: translateY(-2px);
 }
 

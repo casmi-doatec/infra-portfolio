@@ -4,14 +4,10 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import ForestBackground from './components/ForestBackground'
-import FallingLeaves from './components/FallingLeaves'
 
 function App() {
   return (
     <>
-      <ForestBackground />
-      <FallingLeaves count={3} />
       <Navigation />
       <main>
         <Hero />
