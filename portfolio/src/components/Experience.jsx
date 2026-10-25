@@ -38,7 +38,7 @@ export default function Experience() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="section-label">キャリア</span>
-          <h2 className="section-title">職務経歴</h2>
+          <h2 className="section-title">経歴</h2>
           <span className="section-title-jp">Experience</span>
         </motion.div>
 

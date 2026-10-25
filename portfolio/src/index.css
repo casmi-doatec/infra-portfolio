@@ -306,26 +306,6 @@ a { color: inherit; text-decoration: none; }
   background: transparent;
   position: relative;
 }
-.about-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(20, 10, 5, 0.72) 0%,
-    rgba(30, 14, 6, 0.68) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.about-section > * { position: relative; z-index: 1; }
-/* Japanese washi border — brush-stroke top rule */
-.about-section::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 10%; right: 10%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(192,57,43,0.7) 30%, rgba(192,57,43,0.7) 70%, transparent);
-}
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -457,20 +437,7 @@ a { color: inherit; text-decoration: none; }
 .skills-section {
   padding: var(--section-pad);
   background: transparent;
-  position: relative;
 }
-.skills-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(28, 12, 4, 0.65) 0%,
-    rgba(20, 8, 2, 0.60) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.skills-section > * { position: relative; z-index: 1; }
 .skills-tabs {
   display: flex;
   gap: 8px;
@@ -562,27 +529,6 @@ a { color: inherit; text-decoration: none; }
 .experience-section {
   padding: var(--section-pad);
   background: transparent;
-  position: relative;
-}
-.experience-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(20, 10, 5, 0.70) 0%,
-    rgba(26, 12, 4, 0.66) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.experience-section > * { position: relative; z-index: 1; }
-/* Brush-stroke separator */
-.experience-section::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(192,57,43,0.5) 40%, rgba(192,57,43,0.5) 60%, transparent);
 }
 .timeline {
   position: relative;
@@ -671,20 +617,7 @@ a { color: inherit; text-decoration: none; }
 .projects-section {
   padding: var(--section-pad);
   background: transparent;
-  position: relative;
 }
-.projects-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(18, 8, 2, 0.62) 0%,
-    rgba(24, 10, 2, 0.58) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.projects-section > * { position: relative; z-index: 1; }
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -782,26 +715,6 @@ a { color: inherit; text-decoration: none; }
 .contact-section {
   padding: var(--section-pad);
   background: transparent;
-  position: relative;
-}
-.contact-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(20, 10, 5, 0.72) 0%,
-    rgba(16, 8, 2, 0.68) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.contact-section > * { position: relative; z-index: 1; }
-.contact-section::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 15%; right: 15%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(192,57,43,0.6) 35%, rgba(192,57,43,0.6) 65%, transparent);
 }
 .contact-wrapper {
   max-width: 640px;
