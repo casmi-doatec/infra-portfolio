@@ -7,14 +7,13 @@ import Contact from './components/Contact'
 import { lazy, Suspense } from 'react'
 import ForestBackdrop from './components/ForestBackdrop'
 
-const AutumnLeaves = lazy(() => import('./components/AutumnLeaves'))
+const ForestScene = lazy(() => import('./components/ForestScene'))
 
 function App() {
   return (
     <>
-      <ForestBackdrop />
-      <Suspense fallback={null}>
-        <AutumnLeaves />
+      <Suspense fallback={<ForestBackdrop />}>
+        <ForestScene />
       </Suspense>
       <Navigation />
       <main>

@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useMemo, useRef } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { createNoise2D } from 'simplex-noise'
 
@@ -210,7 +210,7 @@ function Leaf({ texture, geometry, initialDelay }) {
   )
 }
 
-function Scene() {
+export default function AutumnLeaves() {
   const geometry = useMemo(() => makeCurvedLeafGeometry(), [])
   const textures = useMemo(
     () => PALETTES.map((p, i) => makeLeafTexture(p, 1234 + i * 977)),
@@ -238,23 +238,5 @@ function Scene() {
         <Leaf key={i} texture={slot.texture} geometry={geometry} initialDelay={slot.delay} />
       ))}
     </>
-  )
-}
-
-export default function AutumnLeaves() {
-  const [reduced] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-  if (reduced) return null
-
-  return (
-    <Canvas
-      style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none' }}
-      camera={{ position: [0, 0, 10], fov: 50 }}
-      dpr={[1, 2]}
-      gl={{ alpha: true, antialias: true }}
-    >
-      <Scene />
-    </Canvas>
   )
 }
