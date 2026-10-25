@@ -26,59 +26,49 @@
 }
 
 /* ========================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — Fairy
    (only on pointer-capable devices)
    ======================================== */
 @media (hover: hover) and (pointer: fine) {
   * { cursor: none !important; }
 }
 
-.cursor-dot {
-  position: fixed;
-  top:  0;
-  left: 0;
-  width:         7px;
-  height:        7px;
-  border-radius: 50%;
-  background:    #ffffff;
-  pointer-events: none;
-  z-index:       9999;
-  mix-blend-mode: difference;   /* inverts over light elements */
-  will-change:   transform;
+/* ── Wing flapping keyframes ─────────────────────────────────
+   transform-box: view-box  → origin is in SVG viewport coords
+   transform-origin: 35px 52px  → body center of the 70×90 fairy
+   scaleX(1) → wings fully open
+   scaleX(0.15) → wings folded in toward body center
+   ──────────────────────────────────────────────────────────── */
+
+/* Upper wings */
+@keyframes fairy-hi-l {
+  0%, 100% { transform: scaleX(1); }
+  50%      { transform: scaleX(0.15); }
+}
+@keyframes fairy-hi-r {
+  0%, 100% { transform: scaleX(1); }
+  50%      { transform: scaleX(0.15); }
 }
 
-.cursor-ring {
-  position: fixed;
-  top:  0;
-  left: 0;
-  width:         42px;
-  height:        42px;
-  border-radius: 50%;
-  border:        1.5px solid rgba(255, 255, 255, 0.32);
-  pointer-events: none;
-  z-index:       9998;
-  will-change:   transform;
-  /* width/height/border-color animate via CSS — spring handles position */
-  transition:
-    width        0.18s ease,
-    height       0.18s ease,
-    border-color 0.18s ease,
-    opacity      0.25s ease;
+/* Lower wings — slightly out of phase */
+@keyframes fairy-lo-l {
+  0%, 100% { transform: scaleX(1); }
+  50%      { transform: scaleX(0.20); }
+}
+@keyframes fairy-lo-r {
+  0%, 100% { transform: scaleX(1); }
+  50%      { transform: scaleX(0.20); }
 }
 
-/* Over a clickable element */
-.cursor-ring[data-hovered="true"] {
-  width:        62px;
-  height:       62px;
-  border-color: var(--accent);
+.fairy-wing {
+  transform-box:    view-box;
+  transform-origin: 35px 52px;
 }
 
-/* Mouse button held down */
-.cursor-ring[data-clicking="true"] {
-  width:        28px;
-  height:       28px;
-  border-color: var(--accent);
-}
+.fairy-wing-hi-l { animation: fairy-hi-l 0.26s ease-in-out infinite; }
+.fairy-wing-hi-r { animation: fairy-hi-r 0.26s ease-in-out infinite; }
+.fairy-wing-lo-l { animation: fairy-lo-l 0.26s ease-in-out infinite 0.06s; }
+.fairy-wing-lo-r { animation: fairy-lo-r 0.26s ease-in-out infinite 0.06s; }
 
 /* ========================================
    RESET & BASE
