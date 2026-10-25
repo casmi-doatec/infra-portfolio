@@ -31,32 +31,32 @@ function paint(canvas) {
   const rand = mulberry32(7)
 
   const base = ctx.createLinearGradient(0, 0, 0, h)
-  base.addColorStop(0, '#231d10')
-  base.addColorStop(0.45, '#4a3c1e')
-  base.addColorStop(0.75, '#33280f')
-  base.addColorStop(1, '#16110a')
+  base.addColorStop(0, '#0a111d')
+  base.addColorStop(0.45, '#182841')
+  base.addColorStop(0.75, '#111c2e')
+  base.addColorStop(1, '#060a12')
   ctx.fillStyle = base
   ctx.fillRect(0, 0, w, h)
 
   const glow = ctx.createRadialGradient(w * 0.68, h * 0.22, 0, w * 0.68, h * 0.22, w * 0.6)
-  glow.addColorStop(0, 'rgba(214, 176, 98, 0.45)')
-  glow.addColorStop(1, 'rgba(214, 176, 98, 0)')
+  glow.addColorStop(0, 'rgba(120, 160, 215, 0.30)')
+  glow.addColorStop(1, 'rgba(120, 160, 215, 0)')
   ctx.fillStyle = glow
   ctx.fillRect(0, 0, w, h)
 
   for (let i = 0; i < 46; i++) {
-    trunk(ctx, rand() * w, 3 + rand() * 8, h, `rgba(96, 80, 48, ${0.25 + rand() * 0.2})`, rand)
+    trunk(ctx, rand() * w, 3 + rand() * 8, h, `rgba(62, 86, 120, ${0.22 + rand() * 0.2})`, rand)
   }
 
   const fog = ctx.createLinearGradient(0, h * 0.35, 0, h * 0.85)
-  fog.addColorStop(0, 'rgba(190, 160, 100, 0)')
-  fog.addColorStop(0.5, 'rgba(190, 160, 100, 0.16)')
-  fog.addColorStop(1, 'rgba(190, 160, 100, 0)')
+  fog.addColorStop(0, 'rgba(120, 150, 195, 0)')
+  fog.addColorStop(0.5, 'rgba(120, 150, 195, 0.14)')
+  fog.addColorStop(1, 'rgba(120, 150, 195, 0)')
   ctx.fillStyle = fog
   ctx.fillRect(0, 0, w, h)
 
   for (let i = 0; i < 16; i++) {
-    trunk(ctx, rand() * w, 14 + rand() * 20, h, `rgba(44, 34, 18, ${0.55 + rand() * 0.2})`, rand)
+    trunk(ctx, rand() * w, 14 + rand() * 20, h, `rgba(14, 22, 36, ${0.55 + rand() * 0.2})`, rand)
   }
 
   ctx.globalCompositeOperation = 'lighter'
@@ -64,8 +64,8 @@ function paint(canvas) {
     const x = w * (0.35 + rand() * 0.6)
     const spread = 40 + rand() * 90
     const ray = ctx.createLinearGradient(x, 0, x - w * 0.25, h)
-    ray.addColorStop(0, 'rgba(235, 205, 140, 0.10)')
-    ray.addColorStop(1, 'rgba(235, 205, 140, 0)')
+    ray.addColorStop(0, 'rgba(150, 185, 230, 0.08)')
+    ray.addColorStop(1, 'rgba(150, 185, 230, 0)')
     ctx.fillStyle = ray
     ctx.beginPath()
     ctx.moveTo(x, 0)
@@ -80,26 +80,28 @@ function paint(canvas) {
   for (let i = 0; i < 220; i++) {
     const r = 20 + rand() * 70
     ctx.fillStyle = rand() < 0.5
-      ? `rgba(70, 56, 22, ${0.08 + rand() * 0.12})`
-      : `rgba(150, 110, 40, ${0.05 + rand() * 0.08})`
+      ? `rgba(18, 32, 52, ${0.10 + rand() * 0.14})`
+      : `rgba(60, 90, 130, ${0.05 + rand() * 0.08})`
     ctx.beginPath()
     ctx.arc(rand() * w, rand() * h * 0.28, r, 0, Math.PI * 2)
     ctx.fill()
   }
 
   for (let i = 0; i < 420; i++) {
-    ctx.fillStyle = `rgba(${150 + rand() * 60}, ${100 + rand() * 40}, ${40 + rand() * 20}, ${0.10 + rand() * 0.15})`
+    ctx.fillStyle = rand() < 0.3
+      ? `rgba(${110 + rand() * 40}, 32, 30, ${0.10 + rand() * 0.12})`
+      : `rgba(${50 + rand() * 30}, ${70 + rand() * 30}, ${100 + rand() * 30}, ${0.10 + rand() * 0.15})`
     ctx.beginPath()
     ctx.ellipse(rand() * w, h * (0.86 + rand() * 0.14), 3 + rand() * 6, 1.5 + rand() * 2.5, rand() * Math.PI, 0, Math.PI * 2)
     ctx.fill()
   }
 
   const nearXs = [0.03, 0.14, 0.88, 0.97, 0.5 + (rand() - 0.5) * 0.3]
-  nearXs.forEach(fx => trunk(ctx, fx * w, 50 + rand() * 60, h, 'rgba(16, 11, 5, 0.88)', rand))
+  nearXs.forEach(fx => trunk(ctx, fx * w, 50 + rand() * 60, h, 'rgba(4, 7, 12, 0.88)', rand))
 
   const vig = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.75)
   vig.addColorStop(0, 'rgba(0, 0, 0, 0)')
-  vig.addColorStop(1, 'rgba(0, 0, 0, 0.6)')
+  vig.addColorStop(1, 'rgba(0, 0, 0, 0.65)')
   ctx.fillStyle = vig
   ctx.fillRect(0, 0, w, h)
 }

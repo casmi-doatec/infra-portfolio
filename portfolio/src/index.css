@@ -52,9 +52,9 @@ html {
   height: 100%;
   z-index: -2;
   pointer-events: none;
-  filter: blur(5px);
+  filter: blur(6px);
   transform: scale(1.04);
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 body {
@@ -62,7 +62,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
-  background: #1A0A04;
+  background: #05080e;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
