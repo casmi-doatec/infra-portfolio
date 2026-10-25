@@ -27,10 +27,9 @@ export default function Hero() {
             インフラエンジニア
           </motion.p>
 
-          {/* TODO: Replace with your actual name */}
           <motion.h1 className="hero-name" {...fadeUp(0.25)}>
-            Your Name
-            <span className="hero-name-jp">山田 太郎</span>
+            Taiji Takeda
+            <span className="hero-name-jp">武田 泰治</span>
           </motion.h1>
 
           <motion.p className="hero-title" {...fadeUp(0.35)}>

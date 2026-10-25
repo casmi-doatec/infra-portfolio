@@ -26,6 +26,61 @@
 }
 
 /* ========================================
+   CUSTOM CURSOR
+   (only on pointer-capable devices)
+   ======================================== */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+.cursor-dot {
+  position: fixed;
+  top:  0;
+  left: 0;
+  width:         7px;
+  height:        7px;
+  border-radius: 50%;
+  background:    #ffffff;
+  pointer-events: none;
+  z-index:       9999;
+  mix-blend-mode: difference;   /* inverts over light elements */
+  will-change:   transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top:  0;
+  left: 0;
+  width:         42px;
+  height:        42px;
+  border-radius: 50%;
+  border:        1.5px solid rgba(255, 255, 255, 0.32);
+  pointer-events: none;
+  z-index:       9998;
+  will-change:   transform;
+  /* width/height/border-color animate via CSS — spring handles position */
+  transition:
+    width        0.18s ease,
+    height       0.18s ease,
+    border-color 0.18s ease,
+    opacity      0.25s ease;
+}
+
+/* Over a clickable element */
+.cursor-ring[data-hovered="true"] {
+  width:        62px;
+  height:       62px;
+  border-color: var(--accent);
+}
+
+/* Mouse button held down */
+.cursor-ring[data-clicking="true"] {
+  width:        28px;
+  height:       28px;
+  border-color: var(--accent);
+}
+
+/* ========================================
    RESET & BASE
    ======================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

@@ -5,10 +5,12 @@ import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import CustomCursor from './components/CustomCursor'
 
 function App() {
   return (
     <>
+      <CustomCursor />
       <Navigation />
       <main>
         <Hero />

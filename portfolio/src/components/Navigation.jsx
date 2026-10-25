@@ -20,9 +20,8 @@ export default function Navigation() {
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#hero" className="nav-logo">
-          <div className="nav-logo-mark">山</div>
-          {/* TODO: Replace "Your Name" with your actual name */}
-          <span className="nav-logo-text">Your Name</span>
+          <div className="nav-logo-mark">武</div>
+          <span className="nav-logo-text">Taiji Takeda</span>
         </a>
 
         <ul className="nav-links">
