@@ -4,10 +4,18 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import { lazy, Suspense } from 'react'
+import ForestBackdrop from './components/ForestBackdrop'
+
+const AutumnLeaves = lazy(() => import('./components/AutumnLeaves'))
 
 function App() {
   return (
     <>
+      <ForestBackdrop />
+      <Suspense fallback={null}>
+        <AutumnLeaves />
+      </Suspense>
       <Navigation />
       <main>
         <Hero />
