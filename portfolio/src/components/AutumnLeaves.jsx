@@ -10,6 +10,7 @@ const PALETTES = [
   { light: '#d85050', base: '#a81c2c', edge: '#5e0e18' },
 ]
 
+const LEAVES_PER_GROUP = 4
 const CX = 128
 const CY = 146
 const R = 104
@@ -143,10 +144,11 @@ function makeCurvedLeafGeometry() {
 const noise = createNoise2D()
 const rnd = (a, b) => a + Math.random() * (b - a)
 
+// Spawn area adjusted for new camera at [0, 2.5, 8] looking at [0, 2, -15]
 function resetLeaf(s, vp) {
-  s.x = rnd(-vp.width * 0.45, vp.width * 0.45)
-  s.y = vp.height / 2 + 0.8
-  s.z = rnd(-1.5, 0.8)
+  s.x = rnd(-vp.width * 0.55, vp.width * 0.55)
+  s.y = vp.height / 2 + 1.5
+  s.z = rnd(2, 7)
   s.seed = Math.random() * 1000
   s.theta = Math.random() * Math.PI * 2
   s.omega = rnd(0.45, 0.8)
@@ -159,46 +161,74 @@ function resetLeaf(s, vp) {
   s.size = rnd(0.6, 0.85)
 }
 
-function Leaf({ texture, geometry, initialDelay }) {
-  const mesh = useRef()
+// Instanced leaf group: one InstancedMesh per palette color
+function LeafGroup({ texture, geometry, count, baseDelay }) {
+  const meshRef = useRef()
   const vp = useThree(state => state.viewport)
-  const s = useRef({ waiting: initialDelay, t: 0 }).current
+  const dummy = useMemo(() => new THREE.Object3D(), [])
+
+  const states = useMemo(() => {
+    const arr = []
+    for (let i = 0; i < count; i++) {
+      arr.push({
+        waiting: baseDelay + rnd(i * 2, i * 2 + 4),
+        t: 0,
+        x: 0, y: 10, z: 4,
+        seed: 0, theta: 0, omega: 0, swing: 0, fall: 0,
+        pitch: 0, yaw: 0, yawFreq: 0, flip: 0, size: 0.7,
+      })
+    }
+    return arr
+  }, [count, baseDelay])
 
   useFrame((_, rawDt) => {
     const dt = Math.min(rawDt, 0.05)
-    const m = mesh.current
+    const inst = meshRef.current
+    if (!inst) return
 
-    if (s.waiting > 0) {
-      s.waiting -= dt
-      m.visible = false
-      if (s.waiting <= 0) resetLeaf(s, vp)
-      return
+    for (let i = 0; i < count; i++) {
+      const s = states[i]
+
+      if (s.waiting > 0) {
+        s.waiting -= dt
+        if (s.waiting <= 0) resetLeaf(s, vp)
+        // Hide by scaling to zero
+        dummy.position.set(0, -100, 0)
+        dummy.scale.setScalar(0)
+        dummy.updateMatrix()
+        inst.setMatrixAt(i, dummy.matrix)
+        continue
+      }
+
+      s.t += dt
+
+      const wind = noise(s.t * 0.07, s.seed)
+      s.theta += s.omega * (1 + 0.25 * noise(s.t * 0.13, s.seed + 9)) * dt
+
+      const glide = Math.cos(s.theta)
+      s.x += (s.swing * glide + wind * 0.12) * dt
+      s.y -= s.fall * (0.4 + 0.8 * Math.abs(glide)) * dt
+
+      if (noise(s.t * 0.05, s.seed + 21) > 0.6) s.flip += 2.4 * dt
+
+      dummy.position.set(s.x, s.y, s.z)
+      dummy.rotation.set(
+        s.pitch + 0.35 * glide + s.flip,
+        s.yaw + 0.6 * Math.sin(s.t * s.yawFreq * Math.PI * 2),
+        -0.8 * Math.sin(s.theta) + 0.15 * wind,
+      )
+      dummy.scale.setScalar(s.size)
+      dummy.updateMatrix()
+      inst.setMatrixAt(i, dummy.matrix)
+
+      if (s.y < -vp.height / 2 - 1.5) s.waiting = rnd(3, 10)
     }
-    m.visible = true
-    s.t += dt
 
-    const wind = noise(s.t * 0.07, s.seed)
-    s.theta += s.omega * (1 + 0.25 * noise(s.t * 0.13, s.seed + 9)) * dt
-
-    const glide = Math.cos(s.theta)
-    s.x += (s.swing * glide + wind * 0.12) * dt
-    s.y -= s.fall * (0.4 + 0.8 * Math.abs(glide)) * dt
-
-    if (noise(s.t * 0.05, s.seed + 21) > 0.6) s.flip += 2.4 * dt
-
-    m.position.set(s.x, s.y, s.z)
-    m.rotation.set(
-      s.pitch + 0.35 * glide + s.flip,
-      s.yaw + 0.6 * Math.sin(s.t * s.yawFreq * Math.PI * 2),
-      -0.8 * Math.sin(s.theta) + 0.15 * wind,
-    )
-    m.scale.setScalar(s.size)
-
-    if (s.y < -vp.height / 2 - 0.8) s.waiting = rnd(3, 10)
+    inst.instanceMatrix.needsUpdate = true
   })
 
   return (
-    <mesh ref={mesh} geometry={geometry} visible={false}>
+    <instancedMesh ref={meshRef} args={[geometry, undefined, count]} frustumCulled={false}>
       <meshStandardMaterial
         map={texture}
         alphaTest={0.4}
@@ -206,7 +236,7 @@ function Leaf({ texture, geometry, initialDelay }) {
         roughness={0.8}
         metalness={0}
       />
-    </mesh>
+    </instancedMesh>
   )
 }
 
@@ -222,20 +252,17 @@ export default function AutumnLeaves() {
     textures.forEach(t => t.dispose())
   }, [geometry, textures])
 
-  const slots = useMemo(
-    () => [[0.5, 1.5], [4, 7], [9, 13], [15, 20]].map(([a, b], i) => ({
-      delay: rnd(a, b),
-      texture: textures[i % textures.length],
-    })),
-    [textures],
-  )
-
   return (
     <>
-      <ambientLight intensity={1.0} color="#e4ecff" />
-      <directionalLight position={[2, 4, 8]} intensity={1.5} color="#fff1dd" />
-      {slots.map((slot, i) => (
-        <Leaf key={i} texture={slot.texture} geometry={geometry} initialDelay={slot.delay} />
+      {/* 4 instanced groups (one per palette), 4 leaves each = 16 total */}
+      {textures.map((tex, i) => (
+        <LeafGroup
+          key={i}
+          texture={tex}
+          geometry={geometry}
+          count={LEAVES_PER_GROUP}
+          baseDelay={i * 1.5}
+        />
       ))}
     </>
   )
