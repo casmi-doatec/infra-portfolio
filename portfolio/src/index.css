@@ -2,20 +2,21 @@
    DESIGN TOKENS
    ======================================== */
 :root {
-  --bg:          #1A0A04;
-  --bg-2:        #221006;
-  --bg-card:     rgba(30, 14, 6, 0.72);
-  --bg-elevated: rgba(46, 22, 8, 0.80);
+  --bg:          #eef3f8;
+  --bg-2:        #dfe7f0;
+  --bg-card:     rgba(255, 255, 255, 0.72);
+  --bg-elevated: rgba(222, 231, 241, 0.90);
   --accent:      #C0392B;
-  --accent-dim:  rgba(192, 57, 43, 0.15);
-  --accent-glow: rgba(192, 57, 43, 0.35);
-  --gold:        #D4A017;
-  --gold-dim:    rgba(212, 160, 23, 0.18);
-  --white:       #F5ECD7;
-  --text:        rgba(245, 236, 215, 0.92);
-  --text-2:      rgba(245, 236, 215, 0.58);
-  --text-3:      rgba(245, 236, 215, 0.30);
-  --border:      rgba(212, 160, 23, 0.12);
+  --accent-dim:  rgba(192, 57, 43, 0.12);
+  --accent-glow: rgba(192, 57, 43, 0.30);
+  --gold:        #a8770a;
+  --gold-dim:    rgba(168, 119, 10, 0.14);
+  --ink:         #14233a;
+  --on-accent:   #ffffff;
+  --text:        rgba(20, 35, 58, 0.90);
+  --text-2:      rgba(20, 35, 58, 0.70);
+  --text-3:      rgba(20, 35, 58, 0.48);
+  --border:      rgba(20, 35, 58, 0.12);
   --border-acc:  rgba(192, 57, 43, 0.40);
   --font-sans:   'Space Grotesk', 'Noto Sans JP', sans-serif;
   --font-jp:     'Noto Serif JP', serif;
@@ -23,8 +24,6 @@
   --radius:      8px;
   --section-pad: 120px 0;
   --container:   1100px;
-  /* Japanese washi texture tone */
-  --washi:       rgba(245, 236, 215, 0.04);
 }
 
 /* ========================================
@@ -42,7 +41,7 @@ html {
 ::-webkit-scrollbar-track { background: var(--bg-2); }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-::selection { background: var(--accent-dim); color: var(--white); }
+::selection { background: var(--accent-dim); color: var(--ink); }
 
 
 .forest-backdrop {
@@ -54,7 +53,7 @@ html {
   pointer-events: none;
   filter: blur(6px);
   transform: scale(1.04);
-  opacity: 0.5;
+  opacity: 0.25;
 }
 
 body {
@@ -62,7 +61,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
-  background: #05080e;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -110,7 +109,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 700;
   font-family: var(--font-jp);
-  color: var(--white);
+  color: var(--ink);
   line-height: 1.2;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
@@ -135,7 +134,7 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   padding: 13px 28px;
   background: var(--accent);
-  color: var(--white);
+  color: var(--on-accent);
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 600;
@@ -187,12 +186,12 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid transparent;
 }
 .nav {
-  background: rgba(26, 10, 4, 0.40);
+  background: rgba(245, 248, 252, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .nav.scrolled {
-  background: rgba(26, 10, 4, 0.88);
+  background: rgba(245, 248, 252, 0.90);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-color: var(--border);
@@ -224,13 +223,13 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   font-family: var(--font-jp);
   font-size: 16px;
-  color: var(--white);
+  color: var(--on-accent);
   line-height: 1;
 }
 .nav-logo-text {
   font-size: 15px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--ink);
   letter-spacing: 0.02em;
 }
 
@@ -259,7 +258,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent);
   transition: width 0.25s;
 }
-.nav-links a:hover { color: var(--white); }
+.nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { width: 100%; }
 
 .nav-cta {
@@ -273,7 +272,7 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-cta:hover {
   background: var(--accent-dim);
-  color: var(--white) !important;
+  color: var(--on-accent) !important;
 }
 .nav-cta::after { display: none !important; }
 
@@ -308,13 +307,13 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 .about-card {
-  background: rgba(28, 12, 4, 0.65);
-  border: 1px solid rgba(212, 160, 23, 0.22);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(168, 119, 10, 0.22);
   border-radius: 4px;
   padding: 40px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,160,23,0.08);
+  box-shadow: 0 2px 32px rgba(20, 35, 58, 0.10), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 .about-card::before {
   content: '';
@@ -384,7 +383,7 @@ a { color: inherit; text-decoration: none; }
 .about-stat-num {
   font-size: 36px;
   font-weight: 700;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1;
   display: block;
 }
@@ -438,8 +437,8 @@ a { color: inherit; text-decoration: none; }
 }
 .skills-tab {
   padding: 8px 20px;
-  background: rgba(28, 12, 4, 0.50);
-  border: 1px solid rgba(212, 160, 23, 0.20);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(168, 119, 10, 0.20);
   border-radius: 2px;
   font-family: var(--font-jp);
   font-size: 13px;
@@ -456,7 +455,7 @@ a { color: inherit; text-decoration: none; }
 .skills-tab.active {
   background: rgba(192, 57, 43, 0.25);
   border-color: var(--accent);
-  color: var(--white);
+  color: var(--ink);
 }
 .skills-grid {
   display: grid;
@@ -464,18 +463,18 @@ a { color: inherit; text-decoration: none; }
   gap: 16px;
 }
 .skill-card {
-  background: rgba(28, 12, 4, 0.60);
-  border: 1px solid rgba(212, 160, 23, 0.18);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(168, 119, 10, 0.18);
   border-radius: 4px;
   padding: 24px;
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   cursor: default;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 16px rgba(20, 35, 58, 0.10);
 }
 .skill-card:hover {
   border-color: rgba(192, 57, 43, 0.55);
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 24px rgba(20, 35, 58, 0.10);
 }
 .skill-card-header {
   display: flex;
@@ -486,7 +485,7 @@ a { color: inherit; text-decoration: none; }
 .skill-card-name {
   font-size: 16px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--ink);
 }
 .skill-dots {
   display: flex;
@@ -535,7 +534,7 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, var(--accent), var(--gold), rgba(212,160,23,0.1), transparent);
+  background: linear-gradient(to bottom, var(--accent), var(--gold), rgba(168,119,10,0.1), transparent);
 }
 .timeline-item {
   display: grid;
@@ -572,7 +571,7 @@ a { color: inherit; text-decoration: none; }
 .timeline-role {
   font-size: 20px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--ink);
   margin-bottom: 4px;
 }
 .timeline-company {
@@ -616,8 +615,8 @@ a { color: inherit; text-decoration: none; }
   gap: 20px;
 }
 .project-card {
-  background: rgba(26, 10, 4, 0.62);
-  border: 1px solid rgba(212, 160, 23, 0.16);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(168, 119, 10, 0.16);
   border-radius: 4px;
   padding: 28px;
   display: flex;
@@ -641,7 +640,7 @@ a { color: inherit; text-decoration: none; }
 .project-card:hover {
   border-color: var(--border-acc);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(20, 35, 58, 0.10);
 }
 .project-card.featured {
   grid-column: span 2;
@@ -657,7 +656,7 @@ a { color: inherit; text-decoration: none; }
 .project-title {
   font-size: 18px;
   font-weight: 600;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1.3;
 }
 .project-desc {
@@ -716,7 +715,7 @@ a { color: inherit; text-decoration: none; }
 .contact-heading {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 700;
-  color: var(--white);
+  color: var(--ink);
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 20px;
@@ -734,7 +733,7 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
   padding: 16px 36px;
   background: var(--accent);
-  color: var(--white);
+  color: var(--on-accent);
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 600;
@@ -765,8 +764,8 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 8px;
   padding: 10px 22px;
-  background: rgba(28, 12, 4, 0.55);
-  border: 1px solid rgba(212, 160, 23, 0.20);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(168, 119, 10, 0.20);
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
@@ -785,7 +784,7 @@ a { color: inherit; text-decoration: none; }
 .footer {
   border-top: 1px solid rgba(192,57,43,0.3);
   padding: 28px 32px;
-  background: rgba(14, 6, 2, 0.75);
+  background: rgba(255, 255, 255, 0.60);
   position: relative;
 }
 .footer-inner {

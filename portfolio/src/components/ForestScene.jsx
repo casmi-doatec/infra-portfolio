@@ -61,10 +61,10 @@ const fragmentShader = /* glsl */ `
     float t = uTime;
     float x = uv.x * uAspect;
 
-    vec3 top    = vec3(0.039, 0.067, 0.114);
-    vec3 mid    = vec3(0.094, 0.157, 0.255);
-    vec3 low    = vec3(0.067, 0.110, 0.180);
-    vec3 bottom = vec3(0.024, 0.039, 0.071);
+    vec3 top    = vec3(0.780, 0.840, 0.910);
+    vec3 mid    = vec3(0.880, 0.920, 0.960);
+    vec3 low    = vec3(0.840, 0.890, 0.940);
+    vec3 bottom = vec3(0.760, 0.820, 0.890);
 
     vec3 col = mix(bottom, low, smoothstep(0.0, 0.25, uv.y));
     col = mix(col, mid, smoothstep(0.25, 0.55, uv.y));
@@ -72,42 +72,42 @@ const fragmentShader = /* glsl */ `
 
     vec2 gp = vec2(x - 0.68 * uAspect, uv.y - 0.78);
     float glowPulse = 0.9 + 0.1 * sin(t * 0.21);
-    col += vec3(0.47, 0.63, 0.84) * 0.30 * glowPulse * exp(-dot(gp, gp) * 2.2);
+    col += vec3(1.0, 1.0, 1.0) * 0.22 * glowPulse * exp(-dot(gp, gp) * 2.2);
 
     // Slow, non-repeating camera drift shared by all layers, scaled by depth.
     float drift = sin(t * 0.035) * 0.6 + sin(t * 0.013 + 1.3) * 0.4;
 
     float far = trunks(x + drift * 0.02, uv.y, 9.0, 0.28, 0.10, 11.0);
-    col = mix(col, vec3(0.243, 0.337, 0.471), far * 0.32);
+    col = mix(col, vec3(0.660, 0.740, 0.840), far * 0.40);
 
     float band = exp(-pow((uv.y - 0.42) / 0.22, 2.0));
     float fog = fbm(vec2(x * 1.4 + t * 0.020, uv.y * 3.0 - t * 0.004));
-    col = mix(col, vec3(0.47, 0.59, 0.76), band * smoothstep(0.35, 0.85, fog) * 0.30);
+    col = mix(col, vec3(0.970, 0.980, 1.000), band * smoothstep(0.35, 0.85, fog) * 0.45);
 
     float midT = trunks(x + drift * 0.05, uv.y, 3.6, 0.22, 0.07, 23.0);
-    col = mix(col, vec3(0.055, 0.086, 0.141), midT * 0.78);
+    col = mix(col, vec3(0.480, 0.580, 0.710), midT * 0.55);
 
     float r = x + uv.y * 0.45;
     float ray = smoothstep(0.62, 1.0, noise(vec2(r * 2.6 + t * 0.015, 0.5)));
     ray *= 0.7 + 0.3 * sin(t * 0.37 + r * 4.0);
     ray *= smoothstep(0.0, 0.9, uv.y);
-    col += vec3(0.59, 0.73, 0.90) * ray * 0.07;
+    col += vec3(1.0, 1.0, 1.0) * ray * 0.10;
 
     float canopy = fbm(vec2(x * 2.2 + sin(t * 0.08) * 0.15, uv.y * 4.0 + t * 0.01));
-    col = mix(col, vec3(0.07, 0.125, 0.204), smoothstep(0.72, 1.0, uv.y) * canopy * 0.6);
+    col = mix(col, vec3(0.600, 0.690, 0.800), smoothstep(0.72, 1.0, uv.y) * canopy * 0.5);
 
     float groundBand = exp(-pow((uv.y - 0.10) / 0.12, 2.0));
     float groundFog = fbm(vec2(x * 1.1 - t * 0.016, uv.y * 2.0 + 4.0));
-    col = mix(col, vec3(0.31, 0.40, 0.53), groundBand * smoothstep(0.3, 0.8, groundFog) * 0.28);
+    col = mix(col, vec3(0.970, 0.980, 1.000), groundBand * smoothstep(0.3, 0.8, groundFog) * 0.40);
 
     float near = trunks(x + drift * 0.12, uv.y, 1.5, 0.22, 0.05, 37.0);
-    col = mix(col, vec3(0.016, 0.027, 0.047), near * 0.88);
+    col = mix(col, vec3(0.330, 0.420, 0.550), near * 0.55);
 
     vec2 vp = (uv - 0.5) * vec2(uAspect, 1.0) / max(uAspect, 1.0);
-    col *= 1.0 - 0.65 * smoothstep(0.25, 0.75, length(vp));
+    col *= 1.0 - 0.15 * smoothstep(0.30, 0.80, length(vp));
 
-    vec3 page = vec3(0.020, 0.031, 0.055);
-    col = mix(page, col, 0.5);
+    vec3 page = vec3(0.933, 0.953, 0.973);
+    col = mix(page, col, 0.6);
 
     col += (hash2(gl_FragCoord.xy + fract(t)) - 0.5) / 255.0;
     gl_FragColor = vec4(col, 1.0);
