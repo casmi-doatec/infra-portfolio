@@ -79,38 +79,42 @@ export default function Skills() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="skills" className="skills-section">
+    <section id="skills" className="skills-section section-with-bg">
+      <div className="section-bg-img" style={{ backgroundImage: "url('/skills-bg.png')" }} />
+      <div className="section-bg-overlay" />
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="section-label">技術スキル</span>
-          <h2 className="section-title">技術スタック</h2>
-          <span className="section-title-jp">Tech Stack</span>
-        </motion.div>
+        <div className="section-left-content">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="section-label">技術スキル</span>
+            <h2 className="section-title">技術スタック</h2>
+            <span className="section-title-jp">Tech Stack</span>
+          </motion.div>
 
-        <div className="skills-tabs">
-          {CATEGORIES.map((cat, i) => (
-            <button
-              key={cat.name}
-              className={`skills-tab${active === i ? ' active' : ''}`}
-              onClick={() => setActive(i)}
-            >
-              {cat.name}
-            </button>
-          ))}
-        </div>
-
-        <AnimatePresence mode="wait">
-          <div className="skills-grid" key={active}>
-            {CATEGORIES[active].skills.map((skill, i) => (
-              <SkillCard key={skill.name} {...skill} index={i} />
+          <div className="skills-tabs">
+            {CATEGORIES.map((cat, i) => (
+              <button
+                key={cat.name}
+                className={`skills-tab${active === i ? ' active' : ''}`}
+                onClick={() => setActive(i)}
+              >
+                {cat.name}
+              </button>
             ))}
           </div>
-        </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            <div className="skills-grid" key={active}>
+              {CATEGORIES[active].skills.map((skill, i) => (
+                <SkillCard key={skill.name} {...skill} index={i} />
+              ))}
+            </div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   )

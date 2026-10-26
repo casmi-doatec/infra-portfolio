@@ -76,23 +76,27 @@ function ProjectCard({ title, desc, techs, github, featured, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section section-with-bg">
+      <div className="section-bg-img" style={{ backgroundImage: "url('/projects-bg.png')" }} />
+      <div className="section-bg-overlay" />
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="section-label">実績</span>
-          <h2 className="section-title">プロジェクト</h2>
-          <span className="section-title-jp">Projects</span>
-        </motion.div>
+        <div className="section-left-content">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="section-label">実績</span>
+            <h2 className="section-title">プロジェクト</h2>
+            <span className="section-title-jp">Projects</span>
+          </motion.div>
 
-        <div className="projects-grid">
-          {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.title} {...project} index={i} />
-          ))}
+          <div className="projects-grid">
+            {PROJECTS.map((project, i) => (
+              <ProjectCard key={project.title} {...project} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
