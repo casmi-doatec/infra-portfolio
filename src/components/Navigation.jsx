@@ -18,7 +18,7 @@ export default function Navigation() {
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#hero" className="nav-logo">
-          <div className="nav-logo-mark">武</div>
+          <img className="nav-logo-mark" src="/hamster-logo.png" alt="" />
           <span className="nav-logo-text">武田 泰治</span>
         </a>
 
