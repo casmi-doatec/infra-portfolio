@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 const LINKS = [
   { label: '自己紹介', href: '#about'      },
   { label: 'スキル',   href: '#skills'     },
-  { label: '実績',     href: '#projects'   },
 ]
 
 export default function Navigation() {
