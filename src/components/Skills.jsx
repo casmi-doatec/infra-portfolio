@@ -2,32 +2,32 @@ import { useEffect, useRef } from 'react'
 
 const SKILLS = [
   {
-    category: 'Cloud (AWS)',
-    items: ['EC2', 'EKS', 'VPC', 'S3', 'RDS', 'Route 53', 'IAM', 'ALB', 'CloudFront'],
+    category: 'LLM & Generative AI',
+    items: ['Claude API', 'OpenAI API', 'Tool Use', 'Structured Output', 'Prompt Engineering', 'Fine-tuning'],
   },
   {
-    category: 'Container & Orchestration',
-    items: ['Kubernetes', 'Docker', 'Helm'],
+    category: 'RAG & Agents',
+    items: ['LangChain', 'LangGraph', 'LlamaIndex', 'MCP', 'Embeddings', 'Hybrid Search', 'Reranking'],
   },
   {
-    category: 'IaC & Automation',
-    items: ['Terraform', 'Ansible', 'CloudFormation'],
+    category: 'Evaluation & MLOps',
+    items: ['LLM-as-a-Judge', 'Langfuse', 'MLflow', 'PyTorch', 'Hugging Face'],
   },
   {
-    category: 'CI/CD & GitOps',
-    items: ['ArgoCD', 'GitHub Actions', 'Jenkins'],
+    category: 'Frontend',
+    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Streaming UI'],
   },
   {
-    category: 'Monitoring',
-    items: ['Prometheus', 'Grafana', 'CloudWatch'],
+    category: 'Backend & API',
+    items: ['Python', 'FastAPI', 'Node.js', 'REST', 'WebSocket', 'SSE'],
   },
   {
-    category: 'Languages & Scripts',
-    items: ['Python', 'Bash', 'Shell Script', 'YAML', 'SQL'],
+    category: 'Data & Vector DB',
+    items: ['PostgreSQL', 'pgvector', 'Pinecone', 'Redis', 'MongoDB'],
   },
   {
-    category: 'OS & Network',
-    items: ['Linux', 'Nginx', 'TCP/IP', 'VMware'],
+    category: 'Cloud & Delivery',
+    items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions'],
   },
 ]
 

@@ -2,28 +2,28 @@ import { motion } from 'framer-motion'
 
 const EXPERIENCE = [
   {
-    role:     'シニアインフラエンジニア',
+    role:     'フルスタックAIエンジニア',
     company:  '株式会社〇〇',
     period:   '2022年4月 — 現在',
     location: '東京都',
-    desc:     'モノリシックアプリケーションをEKS上のマイクロサービスへ移行するプロジェクトをリード。Terraformを使ったマルチリージョンAWSインフラを設計・構築し、ArgoCDによるGitOpsパイプラインにより、デプロイ頻度を週1回から1日複数回へ改善。',
-    techs:    ['AWS', 'Kubernetes', 'Terraform', 'ArgoCD', 'Prometheus'],
+    desc:     '社内ナレッジ検索のRAG基盤と業務支援AIエージェントを企画から運用まで一貫して開発。ハイブリッド検索とリランキングで回答精度を改善し、評価パイプラインを整備して継続的に品質を計測。ストリーミング対応のチャットUIも設計・実装。',
+    techs:    ['Claude API', 'LangGraph', 'pgvector', 'FastAPI', 'React'],
   },
   {
-    role:     'インフラエンジニア',
+    role:     'フルスタックエンジニア',
     company:  '株式会社〇〇',
     period:   '2020年4月 — 2022年3月',
     location: '東京都',
-    desc:     '20以上のマイクロサービス向けCI/CDパイプラインを構築・保守。AnsibleとTerraformによるインフラプロビジョニングを自動化。PrometheusとGrafanaによる集中監視・アラートを整備し、平均復旧時間（MTTR）を40%削減。',
-    techs:    ['AWS', 'Docker', 'Ansible', 'GitHub Actions', 'Grafana'],
+    desc:     'ReactとPythonによるWebサービスの設計・開発を担当。レコメンドや文書分類などの機械学習機能をAPI化して本番へ組み込み、Dockerを用いたCI/CDでリリースを自動化。',
+    techs:    ['React', 'Python', 'PyTorch', 'Docker', 'PostgreSQL'],
   },
   {
-    role:     'システムエンジニア',
+    role:     'ソフトウェアエンジニア',
     company:  '株式会社〇〇',
     period:   '2018年4月 — 2020年3月',
     location: '東京都',
-    desc:     '500名以上のユーザーを対象にオンプレミスLinuxサーバーインフラを管理。支社向けネットワークアーキテクチャを設計・展開。シェルスクリプトとPythonによるシステム管理の自動化で、月20時間以上の工数を削減。',
-    techs:    ['Linux', 'Python', 'VMware', 'ネットワーク', 'Shell'],
+    desc:     '業務システムのバックエンド開発とデータ集計基盤の構築に従事。SQLとPythonによるデータ処理の自動化で、月20時間以上の工数を削減。',
+    techs:    ['Python', 'SQL', 'Node.js', 'REST API', 'AWS'],
   },
 ]
 

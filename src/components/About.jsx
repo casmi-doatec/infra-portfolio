@@ -2,45 +2,61 @@ import { useEffect, useRef } from 'react'
 
 const LINES = [
   [
-    { text: '誰かが安心して「送信」を押せるのは、' },
+    { text: '「AIって、すごいですね」' },
   ],
   [
-    { text: '見えないところ', hl: true, color: '#dda0ff', size: '1.2em' },
-    { text: 'で、誰かが静かに支えてるから。' },
+    { text: 'そう言われるたびに、思う。' },
+  ],
+  [
+    { text: 'すごいのは、' },
+    { text: 'モデルだけじゃない', hl: true, color: '#dda0ff', size: '1.2em' },
+    { text: 'って。' },
   ],
   [],
   [
-    { text: '僕はその「' },
-    { text: '誰か', hl: true, color: '#ffeb3b', size: '1.5em' },
-    { text: '」。' },
+    { text: '画面を設計して、APIを書いて、' },
+  ],
+  [
+    { text: 'データを整えて、プロンプトを磨いて、' },
+  ],
+  [
+    { text: '精度を測って、また改善する。' },
+  ],
+  [
+    { text: 'そのすべてがそろって、はじめて' },
+  ],
+  [
+    { text: '「使えるAI」', hl: true, color: '#ffeb3b', size: '1.5em' },
+    { text: 'になる。' },
+  ],
+  [],
+  [
+    { text: '僕は、その' },
+    { text: '全工程', hl: true, color: '#a8f0d0', size: '1.3em' },
+    { text: 'を一人で持てるエンジニア。' },
   ],
   [],
   [
     { text: 'よく聞かれる。' },
   ],
   [
-    { text: '「なんで目立たない仕事を？」' },
+    { text: '「フロントも、バックも、AIも全部やるの？」' },
   ],
   [],
   [
-    { text: '好き', hl: true, color: '#ffeb3b', size: '1.8em' },
-    { text: 'だから、かな。' },
+    { text: 'やる、というより、' },
+    { text: 'つなげたい', hl: true, color: '#ffeb3b', size: '1.8em' },
+    { text: '。' },
+  ],
+  [
+    { text: 'ユーザーの一言からモデルの出力まで、' },
+  ],
+  [
+    { text: 'ひとつの線で見ていたいから。' },
   ],
   [],
   [
-    { text: '壊れないように設計して、' },
-  ],
-  [
-    { text: '壊れても、すぐ元に戻せるようにして。' },
-  ],
-  [
-    { text: 'その' },
-    { text: '安心感', hl: true, color: '#a8f0d0', size: '1.3em' },
-    { text: 'をつくるのが、たまらなく好き。' },
-  ],
-  [],
-  [
-    { text: 'Linuxの黒い画面', hl: true, color: '#a8f0d0' },
+    { text: 'Webアプリ開発', hl: true, color: '#a8f0d0' },
     { text: 'から始まって、' },
   ],
   [
@@ -51,23 +67,23 @@ const LINES = [
   [],
   [
     { text: '今は' },
-    { text: 'クラウドの空の上', hl: true, color: '#a8f0d0', size: '1.2em' },
+    { text: 'LLM・RAG・AIエージェント', hl: true, color: '#a8f0d0', size: '1.2em' },
     { text: 'で、' },
   ],
   [
-    { text: '同じことをしてる。' },
+    { text: '現場の仕事を変えるプロダクトをつくってる。' },
   ],
   [],
   [
-    { text: '技術は変わった。' },
+    { text: '技術は、どんどん変わる。' },
   ],
   [
-    { text: '守りたい気持ち', hl: true, color: '#dda0ff', size: '1.3em' },
+    { text: '「ちゃんと役に立つものをつくる」', hl: true, color: '#dda0ff', size: '1.3em' },
     { text: 'は、変わらない。' },
   ],
   [],
   [
-    { text: '「今日も何も起きなかったね」' },
+    { text: '「もう、これなしじゃ仕事できないよ」' },
   ],
   [
     { text: '── それが、僕の' },

@@ -18,7 +18,7 @@ function App() {
         <div className="footer-inner">
           <span className="footer-jp">武田 泰治</span>
           <span className="footer-sep">·</span>
-          <span>インフラエンジニア</span>
+          <span>フルスタックAIエンジニア</span>
           <span className="footer-sep">·</span>
           <span>© 2024</span>
         </div>
