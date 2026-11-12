@@ -1,12 +1,12 @@
 export const RESIDENTS = [
-  { id: 'R001', name: '山田 ハル',   age: 82, area: '港町1丁目',   line: true,  device: 'DV-1001', x: 18, y: 30 },
-  { id: 'R002', name: '佐藤 トシオ', age: 78, area: '港町2丁目',   line: false, device: 'DV-1002', x: 36, y: 62 },
-  { id: 'R003', name: '鈴木 ミチ',   age: 85, area: '桜ヶ丘',     line: true,  device: 'DV-1003', x: 55, y: 22, flaky: true },
-  { id: 'R004', name: '高橋 ケンジ', age: 74, area: '桜ヶ丘',     line: true,  device: 'DV-1004', x: 70, y: 48 },
-  { id: 'R005', name: '田中 フミ',   age: 88, area: '緑町',       line: false, device: 'DV-1005', x: 82, y: 76 },
-  { id: 'R006', name: '伊藤 マサ',   age: 80, area: '緑町',       line: true,  device: 'DV-1006', x: 28, y: 82 },
-  { id: 'R007', name: '渡辺 キヨ',   age: 79, area: '駅前通り',   line: true,  device: 'DV-1007', x: 62, y: 80 },
-  { id: 'R008', name: '中村 ヨシ',   age: 83, area: '駅前通り',   line: true,  device: 'DV-1008', x: 88, y: 28 },
+  { id: 'R001', photo: '/people/R001.jpg', name: '山田 ハル',   area: '港町1丁目',   line: true,  device: 'DV-1001', x: 18, y: 30 },
+  { id: 'R002', photo: '/people/R002.jpg', name: '佐藤 トシオ', area: '港町2丁目',   line: false, device: 'DV-1002', x: 36, y: 62 },
+  { id: 'R003', photo: '/people/R003.jpg', name: '鈴木 ミチ',   area: '桜ヶ丘',     line: true,  device: 'DV-1003', x: 55, y: 22, flaky: true },
+  { id: 'R004', photo: '/people/R004.jpg', name: '高橋 ケンジ', area: '桜ヶ丘',     line: true,  device: 'DV-1004', x: 70, y: 48 },
+  { id: 'R005', photo: '/people/R005.jpg', name: '田中 フミ',   area: '緑町',       line: false, device: 'DV-1005', x: 82, y: 76 },
+  { id: 'R006', photo: '/people/R006.jpg', name: '伊藤 マサ',   area: '緑町',       line: true,  device: 'DV-1006', x: 28, y: 82 },
+  { id: 'R007', photo: '/people/R007.jpg', name: '渡辺 キヨ',   area: '駅前通り',   line: true,  device: 'DV-1007', x: 62, y: 80 },
+  { id: 'R008', photo: '/people/R008.jpg', name: '中村 ヨシ',   area: '駅前通り',   line: true,  device: 'DV-1008', x: 88, y: 28 },
 ]
 
 export const ENDPOINTS = {

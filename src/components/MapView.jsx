@@ -1,7 +1,7 @@
 import { RESIDENTS, STATUS } from '../data'
 
 const COLORS = {
-  idle: '#8a96a3', wait: '#d89a1d', safe: '#1f9d6b', help: '#d6453d', warn: '#8e44ad',
+  idle: '#7c8794', wait: '#f5a524', safe: '#22c55e', help: '#ef4444', warn: '#a78bfa',
 }
 
 export default function MapView({ records, focus, onFocus }) {
@@ -15,14 +15,17 @@ export default function MapView({ records, focus, onFocus }) {
         </g>
         <rect x="52" y="44" width="20" height="22" rx="2" fill="var(--map-park)" />
         <path d="M0 92 Q30 84 60 92 T100 90 V100 H0Z" fill="var(--map-water)" />
+        <defs>
+          {RESIDENTS.map(r => <clipPath key={r.id} id={`clip-${r.id}`}><circle r="3.4" /></clipPath>)}
+        </defs>
         {RESIDENTS.map(r => {
           const tone = STATUS[records[r.id].status].tone
           const pulse = tone === 'wait' || tone === 'help' || tone === 'warn'
           return (
             <g key={r.id} transform={`translate(${r.x} ${r.y})`} onClick={() => onFocus(r.id)} style={{ cursor: 'pointer' }}>
-              {pulse && <circle r="5" fill={COLORS[tone]} opacity=".25" className="pulse" />}
-              <circle r={focus === r.id ? 3.6 : 2.8} fill={COLORS[tone]} stroke="#fff" strokeWidth="1" />
-              <text y="-5" textAnchor="middle" fontSize="3.4" fill="var(--ink)" fontWeight="600">{r.name.split(' ')[0]}</text>
+              {pulse && <circle r="5" fill={COLORS[tone]} opacity=".35" className="pulse" />}
+              <circle r={focus === r.id ? 4.8 : 4.2} fill={COLORS[tone]} />
+              <image href={r.photo} x="-3.4" y="-3.4" width="6.8" height="6.8" clipPath={`url(#clip-${r.id})`} preserveAspectRatio="xMidYMid slice" />
             </g>
           )
         })}

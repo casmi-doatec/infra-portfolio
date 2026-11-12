@@ -69,16 +69,16 @@ export default function App() {
                 <span className={`mode-dot ${emergency ? 'on' : ''}`} />
                 <div>
                   <b>{emergency ? '緊急モード中' : '平常モード'}</b>
-                  <small>接続先: {ep.label}（{ep.device.replace('https://', '')}）</small>
+                  <small>{ep.label}環境に接続中</small>
                 </div>
               </div>
               <div className="btns">
                 <button className="btn danger" disabled={emergency || !picked.size} onClick={() => send({ type: 'SEND_EMERGENCY', ids: [...picked] })}>
-                  ① 緊急モードの合図を送る（{picked.size}名）
+                  緊急モードを発動（{picked.size}名）
                 </button>
-                <button className="btn" disabled={!emergency} onClick={() => send({ type: 'TIMEOUT' })}>② 時間経過（未回答を判定）</button>
-                <button className="btn" disabled={!emergency} onClick={() => send({ type: 'SYNC' })}>③ 連携先へ状況を送信</button>
-                <button className="btn primary" disabled={playing} onClick={play}>▶ 自動再生</button>
+                <button className="btn" disabled={!emergency} onClick={() => send({ type: 'TIMEOUT' })}>時間経過 → 未回答を判定</button>
+                <button className="btn" disabled={!emergency} onClick={() => send({ type: 'SYNC' })}>連携先へ送信</button>
+                <button className="btn primary" disabled={playing} onClick={play}>自動再生</button>
                 <button className="btn ghost" onClick={reset}>リセット</button>
               </div>
               <div className="counts">
@@ -100,8 +100,9 @@ export default function App() {
                         <label className="check" onClick={e => e.stopPropagation()}>
                           <input type="checkbox" checked={picked.has(r.id)} disabled={emergency} onChange={() => toggle(r.id)} />
                         </label>
+                        <img className="avatar" src={r.photo} alt="" />
                         <div className="who">
-                          <b>{r.name}</b> <small>{r.age}歳 ・ {r.area}</small>
+                          <b>{r.name}</b><small>{r.area}</small>
                           <div className="tags">
                             <span className={`tag ${r.line ? '' : 'off'}`}>LINE</span>
                             <span className="tag">端末 {r.device}</span>
@@ -182,7 +183,7 @@ export default function App() {
                 <p className="muted">Authorization: Bearer <code>{ep.key}</code></p>
                 {state.lastSync
                   ? <pre className="payload">{JSON.stringify(state.lastSync.payload, null, 2)}</pre>
-                  : <p className="muted">「③ 連携先へ状況を送信」を押すと、送信内容がここに表示されます。</p>}
+                  : <p className="muted">「連携先へ送信」を押すと、送信内容がここに表示されます。</p>}
               </section>
             </div>
           </>
