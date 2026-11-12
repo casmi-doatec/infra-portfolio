@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "safety-check-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.9",
-    "@react-three/fiber": "^9.8.2",
-    "framer-motion": "^14.6.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "simplex-noise": "^4.0.3",
-    "three": "^0.186.1"
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",
