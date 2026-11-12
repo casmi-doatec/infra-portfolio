@@ -1,5 +1,5 @@
 import { useReducer, useRef, useState, useEffect } from 'react'
-import { RESIDENTS, ENDPOINTS, STATUS, SOURCE_LABEL, SCRIPT } from './data'
+import { RESIDENTS, ENDPOINTS, STATUS, SOURCE_LABEL, SCRIPT, STAGES } from './data'
 import { reducer, initialState, clock } from './reducer'
 import MapView from './components/MapView'
 import Workflow from './components/Workflow'
@@ -25,7 +25,7 @@ export default function App() {
   const stopTimers = () => { timers.current.forEach(clearTimeout); timers.current = [] }
   useEffect(() => stopTimers, [])
 
-  const reset = () => { stopTimers(); setPlaying(false); setPicked(new Set(RESIDENTS.map(r => r.id))); dispatch({ type: 'RESET' }) }
+  const reset = () => { stopTimers(); setPlaying(false); setFocus(null); setPicked(new Set(RESIDENTS.map(r => r.id))); dispatch({ type: 'RESET' }) }
 
   const play = () => {
     reset()
@@ -33,6 +33,7 @@ export default function App() {
     SCRIPT.forEach(([delay, a]) => {
       timers.current.push(setTimeout(() => {
         dispatch({ ...a, at: clock(), ...(a.type === 'SEND_EMERGENCY' && { ids: RESIDENTS.map(r => r.id) }) })
+        setFocus(a.id ?? null)
         if (delay === SCRIPT.at(-1)[0]) setPlaying(false)
       }, delay + 100))
     })
@@ -40,6 +41,9 @@ export default function App() {
 
   const toggle = id => setPicked(p => { const n = new Set(p); if (n.has(id)) n.delete(id); else n.add(id); return n })
   const counts = Object.values(state.records).reduce((m, r) => ({ ...m, [r.status]: (m[r.status] || 0) + 1 }), {})
+  const targets = RESIDENTS.length - (counts.normal || 0)
+  const answered = (counts.safe || 0) + (counts.help || 0)
+  const latest = state.logs.find(l => l.headline)
 
   return (
     <>
@@ -65,20 +69,44 @@ export default function App() {
         {tab === 'flow' ? <Workflow /> : (
           <>
             <section className="card controls">
-              <div className="mode">
-                <span className={`mode-dot ${emergency ? 'on' : ''}`} />
-                <div>
-                  <b>{emergency ? '緊急モード中' : '平常モード'}</b>
-                  <small>{ep.label}環境に接続中</small>
+              <div className="controls-top">
+                <div className="mode">
+                  <span className={`mode-dot ${emergency ? 'on' : ''}`} />
+                  <div>
+                    <b>{emergency ? '緊急モード中' : '平常モード'}</b>
+                    <small>{ep.label}環境に接続中</small>
+                  </div>
                 </div>
+                {emergency && (
+                  <div className="rate">
+                    <b>{answered}</b><span> / {targets}名 回答済み</span>
+                    <div className="rate-bar"><i style={{ width: `${targets ? (answered / targets) * 100 : 0}%` }} /></div>
+                  </div>
+                )}
               </div>
+
+              <ol className="stages">
+                {STAGES.map((st, i) => (
+                  <li key={st.title} className={i < state.stage ? 'done' : i === state.stage ? 'current' : ''}>
+                    <span className="stage-n">{i < state.stage ? '✓' : i + 1}</span>
+                    <div><b>{st.title}</b><small>{st.sub}</small></div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className={`now ${latest?.tone ? `now-${latest.tone}` : ''}`} aria-live="polite">
+                <span className="now-label">いま起きたこと</span>
+                <p key={latest?.n}>{latest ? latest.headline : '「デモを自動再生」を押すと、災害時の安否確認の流れを約20秒で再現します。'}</p>
+                {latest && <time>{latest.at}</time>}
+              </div>
+
               <div className="btns">
+                <button className="btn primary" disabled={playing} onClick={play}>{playing ? '再生中…' : 'デモを自動再生'}</button>
                 <button className="btn danger" disabled={emergency || !picked.size} onClick={() => send({ type: 'SEND_EMERGENCY', ids: [...picked] })}>
                   緊急モードを発動（{picked.size}名）
                 </button>
                 <button className="btn" disabled={!emergency} onClick={() => send({ type: 'TIMEOUT' })}>時間経過 → 未回答を判定</button>
                 <button className="btn" disabled={!emergency} onClick={() => send({ type: 'SYNC' })}>連携先へ送信</button>
-                <button className="btn primary" disabled={playing} onClick={play}>自動再生</button>
                 <button className="btn ghost" onClick={reset}>リセット</button>
               </div>
               <div className="counts">
@@ -165,6 +193,7 @@ export default function App() {
                   {state.logs.length === 0 && <li className="muted">操作するとここに通信が表示されます。</li>}
                   {state.logs.map(l => (
                     <li key={l.n} className={l.tone || ''}>
+                      {l.headline && <p className="log-headline">{l.headline}</p>}
                       <div className="log-head">
                         <span className={`dir dir-${l.dir}`}>{l.dir === 'out' ? '送信 →' : l.dir === 'in' ? '← 受信' : '設定'}</span>
                         <code>{l.method} {l.url}</code>

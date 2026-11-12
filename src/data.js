@@ -1,12 +1,12 @@
 export const RESIDENTS = [
-  { id: 'R001', photo: '/people/R001.jpg', name: '山田 ハル',   area: '港町1丁目',   line: true,  device: 'DV-1001', x: 18, y: 30 },
-  { id: 'R002', photo: '/people/R002.jpg', name: '佐藤 トシオ', area: '港町2丁目',   line: false, device: 'DV-1002', x: 36, y: 62 },
-  { id: 'R003', photo: '/people/R003.jpg', name: '鈴木 ミチ',   area: '桜ヶ丘',     line: true,  device: 'DV-1003', x: 55, y: 22, flaky: true },
-  { id: 'R004', photo: '/people/R004.jpg', name: '高橋 ケンジ', area: '桜ヶ丘',     line: true,  device: 'DV-1004', x: 70, y: 48 },
-  { id: 'R005', photo: '/people/R005.jpg', name: '田中 フミ',   area: '緑町',       line: false, device: 'DV-1005', x: 82, y: 76 },
-  { id: 'R006', photo: '/people/R006.jpg', name: '伊藤 マサ',   area: '緑町',       line: true,  device: 'DV-1006', x: 28, y: 82 },
-  { id: 'R007', photo: '/people/R007.jpg', name: '渡辺 キヨ',   area: '駅前通り',   line: true,  device: 'DV-1007', x: 62, y: 80 },
-  { id: 'R008', photo: '/people/R008.jpg', name: '中村 ヨシ',   area: '駅前通り',   line: true,  device: 'DV-1008', x: 88, y: 28 },
+  { id: 'R001', photo: '/people/R001.svg', name: '山田 ハル',   area: '高砂2丁目',   line: true,  device: 'DV-1001', lat: 35.8592, lng: 139.6538 },
+  { id: 'R002', photo: '/people/R002.svg', name: '佐藤 トシオ', area: '常盤4丁目',   line: false, device: 'DV-1002', lat: 35.8622, lng: 139.6516 },
+  { id: 'R003', photo: '/people/R003.svg', name: '鈴木 ミチ',   area: '岸町3丁目',     line: true,  device: 'DV-1003', lat: 35.8576, lng: 139.6524, flaky: true },
+  { id: 'R004', photo: '/people/R004.svg', name: '高橋 ケンジ', area: '東高砂町',     line: true,  device: 'DV-1004', lat: 35.8597, lng: 139.6586 },
+  { id: 'R005', photo: '/people/R005.svg', name: '田中 フミ',   area: '仲町1丁目',       line: false, device: 'DV-1005', lat: 35.8603, lng: 139.6566 },
+  { id: 'R006', photo: '/people/R006.svg', name: '伊藤 マサ',   area: '岸町4丁目',       line: true,  device: 'DV-1006', lat: 35.858, lng: 139.6562 },
+  { id: 'R007', photo: '/people/R007.svg', name: '渡辺 キヨ',   area: '東仲町',   line: true,  device: 'DV-1007', lat: 35.862, lng: 139.6588 },
+  { id: 'R008', photo: '/people/R008.svg', name: '中村 ヨシ',   area: '常盤1丁目',   line: true,  device: 'DV-1008', lat: 35.8632, lng: 139.6548 },
 ]
 
 export const ENDPOINTS = {
@@ -34,17 +34,25 @@ export const STATUS = {
 
 export const SOURCE_LABEL = { LINE: 'LINE', DEVICE: '見守り端末' }
 
+export const STAGES = [
+  { title: '平常',           sub: '見守り中' },
+  { title: '緊急合図を送信', sub: 'GAS → 見守り端末' },
+  { title: '回答を受付',     sub: 'LINE・端末から' },
+  { title: '未回答を判定',   sub: '通知を受けて反映' },
+  { title: '連携先へ送信',   sub: '集計結果を共有' },
+]
+
 // Scripted run for the auto-play button: [delay ms, action]
 export const SCRIPT = [
-  [0,    { type: 'SEND_EMERGENCY' }],
-  [1800, { type: 'RESPOND', id: 'R001', source: 'LINE',   answer: 'safe' }],
-  [2800, { type: 'RESPOND', id: 'R002', source: 'DEVICE', answer: 'safe' }],
-  [3800, { type: 'RESPOND', id: 'R001', source: 'DEVICE', answer: 'safe' }],
-  [4800, { type: 'RESPOND', id: 'R004', source: 'DEVICE', answer: 'help' }],
-  [5800, { type: 'RESPOND', id: 'R005', source: 'DEVICE', answer: 'safe' }],
-  [6800, { type: 'RESPOND', id: 'R006', source: 'LINE',   answer: 'safe' }],
-  [7800, { type: 'RESPOND', id: 'R008', source: 'LINE',   answer: 'safe' }],
-  [8400, { type: 'RESPOND', id: 'R008', source: 'DEVICE', answer: 'safe' }],
-  [9600, { type: 'TIMEOUT' }],
-  [10800,{ type: 'SYNC' }],
+  [0,     { type: 'SEND_EMERGENCY' }],
+  [2600,  { type: 'RESPOND', id: 'R001', source: 'LINE',   answer: 'safe' }],
+  [4600,  { type: 'RESPOND', id: 'R002', source: 'DEVICE', answer: 'safe' }],
+  [6600,  { type: 'RESPOND', id: 'R001', source: 'DEVICE', answer: 'safe' }],
+  [8600,  { type: 'RESPOND', id: 'R004', source: 'DEVICE', answer: 'help' }],
+  [10600, { type: 'RESPOND', id: 'R005', source: 'DEVICE', answer: 'safe' }],
+  [12400, { type: 'RESPOND', id: 'R006', source: 'LINE',   answer: 'safe' }],
+  [14200, { type: 'RESPOND', id: 'R008', source: 'LINE',   answer: 'safe' }],
+  [16000, { type: 'RESPOND', id: 'R008', source: 'DEVICE', answer: 'safe' }],
+  [18400, { type: 'TIMEOUT' }],
+  [21000, { type: 'SYNC' }],
 ]
